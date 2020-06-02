@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Board from "./components/Board";
+import GameMoves from "./components/GameMoves"
+import { Container, Row, Col } from 'react-bootstrap'
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(''),
+      isXNext: true, // if its true then X, false then O
+      win: false,
+      indexWinningBox: [],
+      history: []
+    };
+  }
+
+  setTheState = (obj) => {
+    this.setState(obj);
+  };
+
+  render() {
+    return (
+      <div>
+          <Container fluid="md">
+            <Row>
+              <h1>Tic Tac Toe</h1>
+            </Row>
+            <Row>
+              <Col sm="4" style={{padding: "0 auto"}}>
+                <Board {...this.state} setTheState={this.setTheState} />  
+              </Col>
+              <Col sm="4" style={{border: "1px solid black", padding: "15px 50px"}}>
+                <GameMoves {...this.state}></GameMoves>
+              </Col>
+              <Col sm="4" style={{border: "1px solid black", padding: "15px 50px"}}>
+                <h2>History:</h2>
+              </Col>
+            </Row>
+          </Container>
+          
+      </div>
+    );
+  }
 }
-
-export default App;
