@@ -38,6 +38,8 @@ export default class Board extends Component {
     //change the value from null to 'x' at the array index number id
     let squaresFromApp = this.props.squares 
     squaresFromApp[id] = this.props.isXNext ? 'X':'O'
+    let a = this.props.history
+    this.props.setTheState({history: [...a, id]});
     this.props.setTheState({squares: squaresFromApp, isXNext: !this.props.isXNext})
     let index = this.checkWin();
     if (index > -1) {
@@ -51,6 +53,7 @@ export default class Board extends Component {
     if (this.props.win) {
       winning = `${this.props.isXNext?'O':'X'} Won!`
     }
+    console.log(this.props.history);
     return (
       <div>
         <h2>{status}</h2>

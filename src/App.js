@@ -12,7 +12,8 @@ export default class App extends Component {
       isXNext: true, // if its true then X, false then O
       win: false,
       indexWinningBox: [],
-      history: []
+      history: [],
+      current: 0
     };
   }
 
@@ -29,10 +30,10 @@ export default class App extends Component {
             </Row>
             <Row>
               <Col sm="4" style={{padding: "0 auto"}}>
-                <Board {...this.state} setTheState={this.setTheState} />  
+                <Board {...this.state} setTheState={this.setTheState}/>  
               </Col>
               <Col sm="4" style={{border: "1px solid black", padding: "15px 50px"}}>
-                <GameMoves {...this.state}></GameMoves>
+                <GameMoves {...this.state} setTheState={this.setTheState}></GameMoves>
               </Col>
               <Col sm="4" style={{border: "1px solid black", padding: "15px 50px"}}>
                 <h2>History:</h2>
