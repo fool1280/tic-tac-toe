@@ -27,6 +27,9 @@ export default class GameMoves extends Component {
             return 0;
         })
         temp = this.props.history.slice(0, id+1); 
+        if (temp.length%2 === 0) {
+            this.props.setTheState({isXNext: true})
+        } else this.props.setTheState({isXNext: false});
         console.log("New Square", newSquare);
         console.log("Square", this.props.squares);
         this.props.setTheState({squares: newSquare, history: temp});
